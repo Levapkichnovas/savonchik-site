@@ -4,6 +4,10 @@ RewriteCond %{HTTPS} off
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# 1.2. Добавление слэша к директориям (чтобы /admin не скачивался как файл)
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [L,R=301]
+
 # 1.1. Приоритет index.php над index.html
 DirectoryIndex index.php index.html
 
