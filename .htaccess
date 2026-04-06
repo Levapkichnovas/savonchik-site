@@ -4,6 +4,15 @@ RewriteCond %{HTTPS} off
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# 1.1. Приоритет index.php над index.html
+DirectoryIndex index.php index.html
+
+# 2. Защита файлов
+<Files "data.json">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
 # 2. Запрет просмотра списков файлов (чтобы не видели содержимое папок)
 Options -Indexes
 
@@ -39,3 +48,4 @@ Options -Indexes
     # Включаем XSS-фильтр браузера
     Header set X-XSS-Protection "1; mode=block"
 </IfModule>
+Continue
