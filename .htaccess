@@ -17,10 +17,22 @@ DirectoryIndex index.php index.html
     Deny from all
 </Files>
 
-# 2. Запрет просмотра списков файлов (чтобы не видели содержимое папок)
+<Files ".env">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# 2.1. Запрет доступа к .git
+RedirectMatch 404 /\.git
+
+# 2.2. Запрет доступа к Python-кешу и venv
+RedirectMatch 404 /__pycache__
+RedirectMatch 404 /venv
+
+# 2.3. Запрет просмотра списков файлов
 Options -Indexes
 
-# 3. Защита важных файлов (на всякий случай)
+# 3. Защита скрытых файлов
 <FilesMatch "^\.">
     Order allow,deny
     Deny from all
@@ -43,13 +55,13 @@ Options -Indexes
     AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript
 </IfModule>
 
-# 6. Заголовки безопасности (Защита от встраивания и XSS)
+# 6. Заголовки безопасности
 <IfModule mod_headers.c>
-    # Запрет открывать сайт во фрейме (защита от Clickjacking)
     Header set X-Frame-Options "SAMEORIGIN"
-    # Защита от подмены MIME-типов
     Header set X-Content-Type-Options "nosniff"
-    # Включаем XSS-фильтр браузера
     Header set X-XSS-Protection "1; mode=block"
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self'"
 </IfModule>
-Continue

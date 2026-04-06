@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+    header('Location: login.php');
+    exit();
+}
+
 // Скрипт для генерации хеша пароля
 $hash = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

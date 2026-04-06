@@ -8,9 +8,12 @@ def load_data():
     """Загружает данные из data.json"""
     if not os.path.exists(DATA_FILE_PATH):
         return {}
-    
-    with open(DATA_FILE_PATH, 'r', encoding='utf-8') as f:
-        return json.load(f)
+
+    try:
+        with open(DATA_FILE_PATH, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except (json.JSONDecodeError, IOError):
+        return {}
 
 def get_text(key, default=""):
     """Возвращает текст по ключу из data.json"""

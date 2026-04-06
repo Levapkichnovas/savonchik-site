@@ -100,8 +100,8 @@ async def process_comment(message: types.Message, state: FSMContext):
     if ADMIN_ID:
         try:
             await message.bot.send_message(ADMIN_ID, application_text, parse_mode="HTML")
-        except Exception as e:
-            await message.answer(f"Ошибка отправки администратору: {e}")
+        except Exception:
+            await message.answer("Произошла ошибка при отправке заявки. Попробуйте позже или свяжитесь напрямую.")
     
     await message.answer("✅ Ваша заявка принята! Мы свяжемся с вами в ближайшее время.", reply_markup=get_main_menu())
     await state.clear()

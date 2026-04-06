@@ -36,7 +36,7 @@ $data = json_decode(file_get_contents('data.json'), true);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- Наш стиль -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=<?= filemtime('style.css') ?>">
 </head>
 
 <body>
@@ -60,6 +60,7 @@ $data = json_decode(file_get_contents('data.json'), true);
         </div>
     </header>
 
+    <main>
     <!-- Hero Секция -->
     <section class="hero">
         <div class="container hero-grid">
@@ -93,7 +94,7 @@ $data = json_decode(file_get_contents('data.json'), true);
             <div class="hero-img-wrapper" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
                 <div class="img-card glass">
                     <!-- Замените src на реальное фото -->
-                    <img src="1.jpg" alt="Анастасия Савончик">
+                    <img src="1.jpg" alt="Анастасия Савончик" loading="lazy" width="400" height="500">
                     <div class="floating-badge">
                         <i class="fas fa-check-circle"></i>
                         <span>Гарантия качества</span>
@@ -316,6 +317,8 @@ $data = json_decode(file_get_contents('data.json'), true);
         </div>
     </section>
 
+    </main>
+
     <!-- Footer -->
     <footer>
         <div class="container footer-content">
@@ -509,8 +512,8 @@ $data = json_decode(file_get_contents('data.json'), true);
     </div>
 
     <!-- Скрипты -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
+    <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script defer src="script.js?v=<?= filemtime('script.js') ?>"></script>
 </body>
 
 </html>

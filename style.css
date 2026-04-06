@@ -48,9 +48,6 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
-    user-select: none;
-    /* Защита от копирования */
-    -webkit-user-select: none;
 }
 
 h1,
@@ -882,6 +879,58 @@ footer {
     .row-inputs {
         grid-template-columns: 1fr;
     }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-img-wrapper {
+        max-width: 300px;
+    }
+
+    .stats-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .pricing-grid {
+        gap: 20px;
+    }
+
+    .section {
+        padding: 40px 0;
+    }
+}
+
+/* --- Focus Visible (клавиатурная навигация) --- */
+.btn:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+a:focus-visible {
+    outline: 2px dashed var(--primary);
+    outline-offset: 2px;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 1px;
 }
 
 /* --- Services (Stages) --- */

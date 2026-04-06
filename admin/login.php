@@ -1,10 +1,7 @@
 <?php
 session_start();
 
-// Логин и Хеш пароля (Пароль: admin123)
 $correct_username = 'admin';
-// Хеш для "admin123" (ПРОСЬБА СГЕНЕРИРОВАТЬ СВОЙ НОВЫЙ ХЕШ!)
-// Этот хеш: $2y$12$Na02MaqSomGiBfZbUz.WquJOSsAuNqUfJJw6H6B7lD76ecpD8/X2K
 $correct_hash = '$2y$12$Na02MaqSomGiBfZbUz.WquJOSsAuNqUfJJw6H6B7lD76ecpD8/X2K';
 
 $error = '';

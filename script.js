@@ -1,10 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 0. Защита от копирования (отключение правой кнопки мыши)
-    document.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-    });
-
     // 1. Инициализация анимаций при скролле (AOS)
     AOS.init({
         once: true, // анимация проигрывается один раз
